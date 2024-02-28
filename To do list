@@ -1,0 +1,48 @@
+class ToDoList:
+    def __init__(self):
+        self.tasks = []
+
+    def addtask(self, task):
+        self.tasks.append(task)
+        print("Task added successfully!")
+
+    def removetask(self, taskindex):
+        if taskindex >= len(self.tasks) or taskindex < 0:
+            print("Invalid task index!")
+        else:
+            del self.tasks[taskindex]
+            print("Task removed successfully!")
+
+    def displaytasks(self):
+        if not self.tasks:
+            print("No tasks to display.")
+        else:
+            print("Your To-Do List:")
+            for i, task in enumerate(self.tasks, 1):
+                print(f"{i}. {task}")
+
+def main():
+    todolist = ToDoList()
+    while True:
+        print("\n1. Add Task\n2. Remove Task\n3. Display Tasks\n4. Exit")
+        choice = input("Enter your choice: ")
+        if choice == '1':
+            task = input("Enter task: ")
+            todolist.addtask(task)
+        elif choice == '2':
+            if todolist.tasks:
+                todolist.displaytasks()
+                taskindex = int(input("Enter task index to remove: ")) - 1
+                todolist.removetask(taskindex)
+            else:
+                print("No tasks to remove.")
+        elif choice == '3':
+            todolist.displaytasks()
+        elif choice == '4':
+            print("Exiting...")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()
